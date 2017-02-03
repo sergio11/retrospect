@@ -2,6 +2,15 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QTextStream>
+#include <employeeentity.h>
+#include <QTableWidgetItem>
+#include <QTableWidget>
+#include <QMessageBox>
+#include <dblib.h>
+#include <dbconnectionfailed.h>
+#include <iostream>
+#include<string>
 
 namespace Ui {
 class MainWindow;

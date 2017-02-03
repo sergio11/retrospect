@@ -33,6 +33,14 @@ HEADERS  += mainwindow.h \
 FORMS    += mainwindow.ui \
     logindialog.ui
 
+CONFIG += debug
+
+INCLUDEPATH += ../dblib
+
+debug {
+    LIBS += -L../dblib -ldblib
+}
+
 DISTFILES +=
 
 RESOURCES += \
