@@ -36,25 +36,13 @@ class SnapshotExtractor:
             text = soup.get_text(separator=" ")
             text = ' '.join(text.split())  # Remove excessive whitespace
 
-            # Extracting links
-            links = [a['href'] for a in soup.find_all('a', href=True)]
-
-            # Extracting images and alt attributes
-            images = [img['alt'] for img in soup.find_all('img', alt=True)]
-
             # Extracting metadata (title, description)
             title = soup.title.string if soup.title else 'No title'
             description = soup.find('meta', attrs={'name': 'description'})
             description_content = description['content'] if description else 'No description'
 
-            # Combine everything into a structured format
             snapshot_info = (
-                f"##### Snapshot: {file_path} #####\n\n"
-                f"Title: {title}\n"
-                f"Description: {description_content}\n"
-                f"Links: {', '.join(links)}\n"
-                f"Image Alt Texts: {', '.join(images)}\n"
-                f"Extracted Text: {text}\n"
+                f"{title} {description_content} {text}"
             )
 
             return snapshot_info
@@ -65,7 +53,7 @@ class SnapshotExtractor:
 
     def process_snapshots(self):
         """
-        Iterates through all .html files in the directory, extracts text, links, images, and metadata,
+        Iterates through all .html files in the directory, extracts text, images, and metadata,
         and creates a unified text file.
         """
         appLogger.info(f"🔍 [PROCESSING] Extracting text and metadata from snapshots in {self.directory}")

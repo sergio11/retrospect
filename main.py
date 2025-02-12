@@ -5,7 +5,7 @@ def main():
     url = "www.nbcnews.com"
 
     retrospect = Retrospect(user_agent)
-    retrospect.extract(url=url, years_ago=5, days_interval=20)
+    retrospect.recon(url=url, years_ago=5, days_interval=3)
 
 if __name__ == "__main__":
     main()
