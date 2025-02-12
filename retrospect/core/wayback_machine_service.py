@@ -1,5 +1,5 @@
-from waybackpy import WaybackMachineCDXServerAPI
 from retrospect.utils.logger import appLogger
+from waybackpy import WaybackMachineCDXServerAPI
 
 class WaybackMachineService:
     def __init__(self, user_agent: str):
@@ -17,15 +17,12 @@ class WaybackMachineService:
             day (int): Day of the snapshot.
 
         Returns:
-            The closest snapshot for the specified date, or None if no snapshot is found.
+            The closest snapshot for the specified date, or None if no snapshot is found or if an error occurs.
         """
-        appLogger.info(f"📡 [SCANNING] Searching Wayback Machine for {url} on {year}-{month}-{day}...")
-        cdx_api = WaybackMachineCDXServerAPI(url=url, user_agent=self.user_agent)
-        snapshot = cdx_api.near(year=year, month=month, day=day)
-
-        if snapshot:
-            appLogger.info(f"📸 [HIT] Snapshot found: {snapshot.archive_url}")
+        try:
+            cdx_api = WaybackMachineCDXServerAPI(url=url, user_agent=self.user_agent)
+            snapshot = cdx_api.near(year=year, month=month, day=day)
             return snapshot
-        else:
-            appLogger.warning(f"❌ [MISS] No snapshot found for {url} on {year}-{month}-{day}")
+        except Exception as e:
+            appLogger.error(f"❌ [ERROR] An error occurred while fetching snapshot for {url} on {year}-{month}-{day}: {e}")
             return None

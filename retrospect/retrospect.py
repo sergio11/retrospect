@@ -2,6 +2,7 @@ from datetime import datetime, timedelta
 import os
 from tqdm import tqdm
 from retrospect.core.snapshot_downloader import SnapshotDownloader
+from retrospect.core.snapshot_extractor import SnapshotExtractor
 from retrospect.core.wayback_machine_service import WaybackMachineService
 from retrospect.utils.logger import appLogger
 
@@ -31,8 +32,8 @@ class Retrospect:
 
     def extract(self, url: str, years_ago: int = 10, days_interval: int = 30):
         """
-        Searches for historical snapshots of a target URL and downloads them.
-
+        Searches for historical snapshots of a target URL, downloads them, and extracts content.
+        
         Args:
             url (str): The target URL to extract.
             years_ago (int): How many years back to look for snapshots.
@@ -60,3 +61,8 @@ class Retrospect:
                     pbar.update(1)
                 else:
                     appLogger.warning(f"❌ [NO TRACE] No data footprint detected for {year}-{month}-{day}")
+
+        appLogger.info(f"🔎 [EXTRACTION] Extracting content from downloaded snapshots...")
+        extractor = SnapshotExtractor(file_dir)
+        extractor.process_snapshots()
+        appLogger.info(f"✅ [DONE] Snapshot extraction completed. Content saved to {file_dir}/unified_snapshots.txt")
