@@ -3,12 +3,23 @@ from bs4 import BeautifulSoup
 from retrospect.utils.logger import appLogger
 
 class SnapshotExtractor:
+    """
+    Extracts text and metadata from HTML snapshots stored in a directory.
+
+    This class is responsible for parsing downloaded HTML snapshots, removing unnecessary elements,
+    extracting relevant textual content and metadata, and consolidating the extracted data into a single file.
+    """
+
     def __init__(self, directory: str):
         """
         Initializes the SnapshotExtractor with the given directory containing .html snapshots.
 
         Args:
-            directory (str): Path to the folder containing snapshots.
+            directory (str): Path to the folder containing snapshot files.
+
+        Attributes:
+            directory (str): The directory containing the snapshot files.
+            output_file (str): Path to the file where extracted content will be saved.
         """
         self.directory = directory
         self.output_file = os.path.join(directory, "unified_snapshots.txt")
@@ -16,13 +27,20 @@ class SnapshotExtractor:
 
     def _extract_text_from_html(self, file_path: str) -> str:
         """
-        Parses an HTML file and extracts meaningful text and metadata.
+        Parses an HTML file to extract meaningful text and metadata.
+
+        This method loads the HTML content, removes unnecessary elements (scripts, styles),
+        and extracts visible text along with metadata such as the page title and description.
 
         Args:
             file_path (str): Path to the HTML snapshot.
 
         Returns:
-            str: Cleaned text and relevant metadata extracted from the HTML.
+            str: A formatted string containing the extracted title, description, and cleaned text content.
+
+        Logs:
+            - Debug: Indicates which file is currently being processed.
+            - Error: Captures and logs any issues encountered while processing the file.
         """
         try:
             with open(file_path, "r", encoding="utf-8") as file:
@@ -32,7 +50,7 @@ class SnapshotExtractor:
             for script in soup(["script", "style"]):
                 script.extract()
 
-            # Extracting text
+            # Extracting visible text
             text = soup.get_text(separator=" ")
             text = ' '.join(text.split())  # Remove excessive whitespace
 
@@ -55,8 +73,17 @@ class SnapshotExtractor:
 
     def process_snapshots(self):
         """
-        Iterates through all .html files in the directory, extracts text, images, and metadata,
-        and creates a unified text file.
+        Iterates through all .html files in the directory, extracts text and metadata,
+        and consolidates the data into a unified text file.
+
+        This method scans the target directory for HTML files, processes each file,
+        and writes the extracted content into a single output file.
+
+        Logs:
+            - Info: Indicates the start of the snapshot processing.
+            - Debug: Logs each file being processed.
+            - Info: Confirms successful extraction and saving of results.
+            - Warning: Alerts if no snapshots were processed.
         """
         appLogger.info(f"🔍 [PROCESSING] Extracting text and metadata from snapshots in {self.directory}")
 
