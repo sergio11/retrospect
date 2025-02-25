@@ -16,22 +16,6 @@ class Retrospect:
         self.security_analyzer = SensitiveDataAnalyzer()
         appLogger.info(f"🛠️ [SYSTEM ONLINE] Retrospect initialized. Ready for infiltration.")
 
-    def _get_target_date(self, years_ago: int) -> datetime:
-        """Calculates the target date based on the years_ago parameter."""
-        target_date = datetime.now() - timedelta(days=365 * years_ago)
-        appLogger.debug(f"⏳ [TIME WARP] Adjusting timeline... Target date: {target_date.strftime('%Y-%m-%d')}")
-        return target_date
-    
-    def _date_range(self, start_date: str, end_date: str):
-        """Generates a date range between start_date and end_date."""
-        start = datetime.strptime(start_date, "%Y%m%d")
-        end = datetime.strptime(end_date, "%Y%m%d")
-        delta = timedelta(days=1)
-        
-        while start <= end:
-            yield start
-            start += delta
-
     def recon(self, url: str, years_ago: int = 10, days_interval: int = 30):
         """
         Performs reconnaissance on historical snapshots of a target URL, downloads them, and extracts content.
@@ -78,11 +62,25 @@ class Retrospect:
         try:
             appLogger.info(f"🔒 [SECURITY ANALYSIS] Analyzing content for sensitive data leaks...")
             result_message = self.security_analyzer.analyze_sensitive_data(
-                unified_file_path=file_path, 
-                pdf_path=f"{file_path}_report.pdf", 
-                json_path=f"{file_path}_report.json"
+                unified_file_path=file_path
             )
             appLogger.info(result_message)
         
         except Exception as e:
             appLogger.error(f"⚠️ [SECURITY ANALYSIS] Error during security analysis: {e}")
+
+    def _get_target_date(self, years_ago: int) -> datetime:
+        """Calculates the target date based on the years_ago parameter."""
+        target_date = datetime.now() - timedelta(days=365 * years_ago)
+        appLogger.debug(f"⏳ [TIME WARP] Adjusting timeline... Target date: {target_date.strftime('%Y-%m-%d')}")
+        return target_date
+    
+    def _date_range(self, start_date: str, end_date: str):
+        """Generates a date range between start_date and end_date."""
+        start = datetime.strptime(start_date, "%Y%m%d")
+        end = datetime.strptime(end_date, "%Y%m%d")
+        delta = timedelta(days=1)
+        
+        while start <= end:
+            yield start
+            start += delta

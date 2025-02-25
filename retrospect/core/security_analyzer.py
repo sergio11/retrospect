@@ -8,6 +8,7 @@ import json
 import os
 from dotenv import load_dotenv
 from retrospect.utils.logger import appLogger
+from langchain.docstore.document import Document
 
 class SensitiveDataAnalyzer:
     """
@@ -31,13 +32,18 @@ class SensitiveDataAnalyzer:
 
         groq_api_key = os.getenv("GROQ_API_KEY")
         model_id = os.getenv("MODEL_ID")
-
+        
         if not groq_api_key or not model_id:
             raise ValueError("GROQ API key and Model ID are required. Ensure they are defined in the .env file.")
 
         self.model = ChatGroq(model=model_id, temperature=1, api_key=groq_api_key)
         self.embeddings = HuggingFaceEmbeddings()
+        self.max_chunks = int(os.getenv("MAX_CHUNKS", 5))
+        self.chunk_size = int(os.getenv("CHUNK_SIZE", 4500))
+        self.chunk_overlap = int(os.getenv("CHUNK_OVERLAP", 0))
+
         appLogger.info("🔥 Groq model initialized successfully! Ready to roll. 💻")
+        appLogger.info(f"📌 Max chunks for retrieval set to: {self.max_chunks}")
 
     def analyze_sensitive_data(self, unified_file_path: str, pdf_path="sensitive_data_report.pdf", json_path="sensitive_data_report.json"):
         """
@@ -62,7 +68,7 @@ class SensitiveDataAnalyzer:
             chunks = self._split_log_into_chunks(scan_results)
 
             vector_store = FAISS.from_documents(chunks, self.embeddings)
-            retriever = vector_store.as_retriever()
+            retriever = vector_store.as_retriever(search_kwargs={"k": self.max_chunks})
             chain = RetrievalQA.from_chain_type(self.model, retriever=retriever)
 
             report = self._generate_analysis_prompt()
@@ -82,7 +88,7 @@ class SensitiveDataAnalyzer:
 
     def _split_log_into_chunks(self, scan_results):
         """
-        Splits the unified scan results into smaller chunks to facilitate better processing.
+        Splits the unified scan results into smaller chunks for better processing.
 
         Args:
             scan_results (str): The unified scan results (extracted HTML text).
@@ -90,9 +96,11 @@ class SensitiveDataAnalyzer:
         Returns:
             list: A list of text chunks created from the scan results.
         """
-        appLogger.info(f"🔪 Splitting log into chunks ...")
-        text_splitter = CharacterTextSplitter(chunk_size=4500, chunk_overlap=0)
-        return text_splitter.create_documents([scan_results])
+    
+        appLogger.info(f"🔪 Splitting log into chunks (Size: {self.chunk_size}, Overlap: {self.chunk_overlap}) ...")
+        text_splitter = CharacterTextSplitter(chunk_size=self.chunk_size, chunk_overlap=self.chunk_overlap)
+        chunks = text_splitter.create_documents([scan_results])
+        return chunks
 
     def _generate_analysis_prompt(self):
         """

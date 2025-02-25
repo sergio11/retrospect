@@ -59,9 +59,6 @@ class SnapshotDownloader:
                 os.makedirs(directory, exist_ok=True)
                 with open(filename, 'w', encoding='utf-8') as file:
                     file.write(response.text)
-                appLogger.info(f"📥 Snapshot downloaded successfully to {filename}")
-            else:
-                appLogger.error(f"❌ Failed to retrieve snapshot. HTTP Status Code: {response.status_code}")
                 
         except requests.exceptions.RequestException as e:
             # Catch any request-related exception and log the error

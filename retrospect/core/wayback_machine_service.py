@@ -46,11 +46,8 @@ class WaybackMachineService:
         try:
             # Initialize the Wayback Machine API client
             cdx_api = WaybackMachineCDXServerAPI(url=url, user_agent=self.user_agent)
-            
             # Attempt to fetch the closest snapshot for the specified date
             snapshot = cdx_api.near(year=year, month=month, day=day)
             return snapshot
         except Exception as e:
-            # Log error if the snapshot retrieval fails
-            appLogger.error(f"❌ [ERROR] An error occurred while fetching snapshot for {url} on {year}-{month}-{day}: {e}")
             return None

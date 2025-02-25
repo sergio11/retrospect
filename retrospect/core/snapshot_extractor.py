@@ -42,7 +42,9 @@ class SnapshotExtractor:
             description_content = description['content'] if description else 'No description'
 
             snapshot_info = (
-                f"{title} {description_content} {text}"
+                f"Title: {title}\n"
+                f"Description: {description_content}\n"
+                f"Extracted Text: {text}\n"
             )
 
             return snapshot_info
