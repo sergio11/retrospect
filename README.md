@@ -32,6 +32,10 @@ By **unlocking the secrets of the past**, Retrospect equips you to **fortify the
 
 ✔ **Structured Reporting** – Automatically generate **professional reports** tailored to **security audits**, **forensic investigations**, and **compliance assessments**. The reports summarize findings from historical snapshots, providing a clear overview of vulnerabilities, exposed data, and security misconfigurations for stakeholders.
 
+<p align="center">
+  <img src="doc/screenshots/picture_2.PNG" />
+</p>
+
 ## 🔎 **Why Use Retrospect?**
 
 | 🚨 **Risk**                        | 🔍 **How Retrospect Helps**                                                                                                                                           |
@@ -92,6 +96,10 @@ Retrospect provides a powerful approach to analyzing historical web data, offeri
 ✔ **Security Auditors** → Assess compliance with historical data exposure.  
 ✔ **Threat Intelligence Experts** → Extract valuable intelligence for proactive defense strategies.  
 ✔ **Researchers & Journalists** → Preserve and analyze historical web data for investigative purposes.  
+
+<p align="center">
+  <img src="doc/screenshots/picture_3.PNG" />
+</p>
 
 ## 🏗️ How It Works  
 
@@ -182,7 +190,30 @@ Retrospect uses environment variables to configure various aspects of its operat
 
 5️⃣ **`CHUNK_OVERLAP`**  
    - Allows some overlap between chunks to improve context continuity.  
-   - **Example:** If set to `500`, each chunk will include the last 500 characters of the previous one.  
+   - **Example:** If set to `500`, each chunk will include the last 500 characters of the previous one.
+
+## 🖥️ **Using the CLI for Retrospect**
+
+Retrospect provides a **Command-Line Interface (CLI)** to streamline the process of **historical web reconnaissance** and **security analysis**. The CLI allows you to easily query archived web snapshots, extract data, and perform security analysis to identify vulnerabilities from the past that could still be a risk today.
+
+### **CLI Command Options**
+
+Below is a table explaining the available options when using the Retrospect CLI:
+
+| Option                             | Description                                                                                                 | Default Value               |
+|------------------------------------|-------------------------------------------------------------------------------------------------------------|-----------------------------|
+| `--url <TARGET_URL>`               | **Required**: The target URL to analyze. For example: `https://example.com`.                               | N/A                         |
+| `--user_agent <USER_AGENT>`        | **Optional**: The User-Agent string for HTTP requests. If not provided, the default User-Agent is used.    | Default User-Agent          |
+| `--years_ago <YEARS_AGO>`          | **Optional**: The number of years back to search for archived snapshots. Default is 10 years.              | 10 years                    |
+| `--days_interval <DAYS_INTERVAL>`  | **Optional**: The time interval (in days) between each snapshot request. Default is 30 days.               | 30 days                     |
+
+### **How the CLI Works**
+
+1. **URL Target**: Provide the **target URL** to be analyzed (e.g., `https://example.com`).
+2. **Snapshot Retrieval**: The tool queries the **Wayback Machine archives** to retrieve snapshots of the provided URL based on the defined time range.
+3. **Content Extraction**: The snapshots are downloaded, and their content is extracted, including text, metadata, and images.
+4. **Security Analysis**: The extracted content undergoes a security analysis to identify potential vulnerabilities, data leaks, or misconfigurations.
+5. **Reporting**: The results of the security analysis are displayed in the terminal, including insights into any potential risks.
 
 ## 🛡️ **Legal & Ethical Considerations**
 
