@@ -85,35 +85,6 @@ Retrospect provides a powerful approach to analyzing historical web data, offeri
 ✔ **Threat Intelligence Experts** → Extract valuable intelligence for proactive defense strategies.  
 ✔ **Researchers & Journalists** → Preserve and analyze historical web data for investigative purposes.  
 
-## ⚙️ Installation & Requirements  
-
-### ✅ **Prerequisites**  
-
-Before installing **Retrospect**, ensure you meet the following requirements:  
-
-✔ **Python 3.8+** → Required for compatibility with dependencies.  
-✔ **Pip** → Ensure you have the latest version (`pip install --upgrade pip`).  
-
-### 📦 **Dependencies & Their Purpose**  
-
-Retrospect relies on several Python libraries for web scraping, data processing, and analysis. Below is a breakdown of the required dependencies:  
-
-| Dependency | Version | Purpose |
-|------------|---------|---------|
-| `colorama` | 0.4.6 | Adds color formatting to terminal output for better readability. |
-| `tqdm` | 4.67.1 | Displays progress bars during snapshot downloads and processing. |
-| `python-dotenv` | 1.0.1 | Loads environment variables (e.g., API keys) from a `.env` file. |
-| `langchain` | 0.2.16 | Provides a framework for working with language models. |
-| `langchain-groq` | 0.1.10 | Integrates **Groq API** for AI-driven text processing. |
-| `fpdf2` | 2.8.1 | Generates PDF reports with extracted insights. |
-| `waybackpy` | 3.0.6 | Interacts with the **Wayback Machine API** to retrieve historical snapshots. |
-| `requests` | 2.32.3 | Makes HTTP requests for downloading web pages and interacting with APIs. |
-| `langchain-community` | 0.2.13 | Extends LangChain with community-driven integrations. |
-| `langchain-huggingface` | 0.0.3 | Provides support for **Hugging Face embeddings**. |
-| `faiss-cpu` | 1.9.0 | Enables efficient similarity search and vector-based analysis. |
-| `beautifulsoup4` | 4.13.3 | Parses and extracts relevant content from HTML snapshots. |
-
-
 ## 🏗️ How It Works  
 
 **Retrospect** follows a systematic **passive reconnaissance approach** to analyze historical web data efficiently. This process helps identify security weaknesses, data leaks, and misconfigurations in archived websites.  
@@ -144,6 +115,66 @@ Retrospect relies on several Python libraries for web scraping, data processing,
      - 📊 **Patterns of past security issues** that could indicate recurring weaknesses.  
      - 📝 **Actionable insights** for cybersecurity teams, penetration testers, and auditors.  
 
+## ⚙️ Installation & Requirements  
+
+### ✅ **Prerequisites**  
+
+Before installing **Retrospect**, ensure you meet the following requirements:  
+
+✔ **Python 3.8+** → Required for compatibility with dependencies.  
+✔ **Pip** → Ensure you have the latest version (`pip install --upgrade pip`).  
+
+### 📦 **Dependencies & Their Purpose**  
+
+Retrospect relies on several Python libraries for web scraping, data processing, and analysis. Below is a breakdown of the required dependencies:  
+
+| Dependency | Version | Purpose |
+|------------|---------|---------|
+| `colorama` | 0.4.6 | Adds color formatting to terminal output for better readability. |
+| `tqdm` | 4.67.1 | Displays progress bars during snapshot downloads and processing. |
+| `python-dotenv` | 1.0.1 | Loads environment variables (e.g., API keys) from a `.env` file. |
+| `langchain` | 0.2.16 | Provides a framework for working with language models. |
+| `langchain-groq` | 0.1.10 | Integrates **Groq API** for AI-driven text processing. |
+| `fpdf2` | 2.8.1 | Generates PDF reports with extracted insights. |
+| `waybackpy` | 3.0.6 | Interacts with the **Wayback Machine API** to retrieve historical snapshots. |
+| `requests` | 2.32.3 | Makes HTTP requests for downloading web pages and interacting with APIs. |
+| `langchain-community` | 0.2.13 | Extends LangChain with community-driven integrations. |
+| `langchain-huggingface` | 0.0.3 | Provides support for **Hugging Face embeddings**. |
+| `faiss-cpu` | 1.9.0 | Enables efficient similarity search and vector-based analysis. |
+| `beautifulsoup4` | 4.13.3 | Parses and extracts relevant content from HTML snapshots. |
+
+## 🛠️ Environment Variables (`.env.template`)
+
+Retrospect uses environment variables to configure various aspects of its operation. Below is a breakdown of their purposes and expected values:
+
+| Variable | Description | Default Value / Example |
+|----------|------------|------------------------|
+| `GROQ_API_KEY` | API Key for authenticating requests to the **Groq** API. Used for sensitive data analysis. | `your_api_key_here` |
+| `MODEL_ID` | Identifier of the language model used for text processing. | `llama3-70b-8192` |
+| `MAX_CHUNKS` | Maximum number of text chunks into which a large file will be split before analysis. | `3` |
+| `CHUNK_SIZE` | Size (in characters) of each text chunk when splitting files for analysis. | `4500` |
+| `CHUNK_OVERLAP` | Number of overlapping characters between chunks to maintain context. | `0` |
+
+### 📌 **Additional Explanation**
+1️⃣ **`GROQ_API_KEY`**  
+   - Required to interact with the **Groq API**.  
+   - You must obtain an API key and store it here before running Retrospect.  
+
+2️⃣ **`MODEL_ID`**  
+   - Specifies which language model will be used for text analysis.  
+   - **Example:** `llama3-70b-8192` is an optimized AI model for text understanding.  
+
+3️⃣ **`MAX_CHUNKS`**  
+   - Controls the maximum number of text chunks that will be analyzed per document.  
+   - A higher value allows more content to be analyzed but increases processing time.  
+
+4️⃣ **`CHUNK_SIZE`**  
+   - Defines the number of characters in each chunk when splitting large files.  
+   - Choosing an appropriate size ensures that language models do not exceed their processing limits.  
+
+5️⃣ **`CHUNK_OVERLAP`**  
+   - Allows some overlap between chunks to improve context continuity.  
+   - **Example:** If set to `500`, each chunk will include the last 500 characters of the previous one.  
 
 ## 🛡️ **Legal & Ethical Considerations**
 
