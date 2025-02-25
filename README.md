@@ -188,11 +188,22 @@ Retrospect uses environment variables to configure various aspects of its operat
 
 ⚠️ **IMPORTANT:** Retrospect is developed for **ethical hacking, security research, and educational purposes only**. Unauthorized use against third-party systems without explicit permission is **strictly prohibited** and may be illegal.  
 
-> **Security is not just about protecting the present—it’s about understanding the past to anticipate future threats.**  
+> **Security is not just about protecting the present—it’s about understanding the past to anticipate future threats.**
 
-## 🙌 **Acknowledgments**
+The author of Retrospect is not responsible for any misuse or damage caused by this tool. Use responsibly and comply with all local laws.
+
+## Acknowledgements 🙏
+
+🙏 I would like to express my sincere gratitude to [Santiago Hernández, a leading expert in Cybersecurity and Artificial Intelligence](https://www.udemy.com/user/shramos/). His outstanding course on **Cybersecurity and Ethical Hacking**, available on Udemy, was instrumental in the development of this project. The insights and techniques I gained from his course were invaluable in guiding my approach to cybersecurity practices. Thank you for sharing your knowledge and expertise!
 
 A huge thank you to the **cybersecurity community, ethical hackers, and security researchers** whose knowledge and tools continue to inspire the development of **Retrospect**.  
+
+## 🤝 **Contributing**
+Contributions to Retrospect are highly encouraged! If you're interested in adding new features, resolving bugs, or enhancing the project's functionality, please feel free to submit pull requests.
+
+## Get in Touch 📬
+
+Retrospect is developed and maintained by **Sergio Sánchez Sánchez** (Dream Software). Special thanks to the open-source community and the contributors who have made this project possible. If you have any questions, feedback, or suggestions, feel free to reach out at  [dreamsoftware92@gmail.com](mailto:dreamsoftware92@gmail.com).
 
 ## License ⚖️
 
