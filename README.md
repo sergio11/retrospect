@@ -22,22 +22,28 @@ By **unlocking the secrets of the past**, Retrospect equips you to **fortify the
 
 ## 🛠️ **Key Features**
 
-✔ **Historical Data Extraction** – Retrieve and analyze archived website versions to identify security risks.  
-✔ **Automated Information Gathering** – Process multiple snapshots efficiently to consolidate insights.  
-✔ **Metadata & Content Analysis** – Extract **titles, descriptions, images, and textual content** from archived pages.  
-✔ **Security Configuration Tracking** – Detect past changes in **headers, CSP settings, exposed files, and more**.  
-✔ **Structured Reporting** – Generate professional reports for security audits and forensic investigations.  
+✔ **Historical Data Extraction** – Retrieve and analyze archived website versions from services like the Wayback Machine to **identify potential security risks**. By examining older versions, you can spot vulnerabilities that were present in the past and may still be exploitable today.
+
+✔ **Automated Information Gathering** – Efficiently process **multiple snapshots** of a website’s history, consolidating information to provide a comprehensive view. This automation ensures that you can analyze a range of archived data without manual effort, saving time while uncovering hidden threats.
+
+✔ **Metadata & Content Analysis** – **Extract titles, descriptions, images, and textual content** from archived web pages to gain insights into the site’s past. Metadata is critical for understanding how a site’s public-facing content, configuration, and structure have changed over time, which can highlight potential risks like outdated privacy policies, broken links, or exposed personal data.
+
+✔ **Security Configuration Tracking** – **Detect past changes** in **headers**, **Content Security Policy (CSP)** settings, **exposed files**, and other security configurations. This feature is essential for identifying security lapses, like misconfigured permissions or missing security headers, which could lead to breaches or attacks.
+
+✔ **Structured Reporting** – Automatically generate **professional reports** tailored to **security audits**, **forensic investigations**, and **compliance assessments**. The reports summarize findings from historical snapshots, providing a clear overview of vulnerabilities, exposed data, and security misconfigurations for stakeholders.
 
 ## 🔎 **Why Use Retrospect?**
 
-| 🚨 **Risk** | 🔍 **How Retrospect Helps** |
-|------------|---------------------------|
-| **Exposed Sensitive Data** | Identifies historical leaks that may still pose security risks. |
-| **Outdated or Unpatched Systems** | Detects references to old technologies that could be vulnerable. |
-| **Evolving Security Policies** | Tracks changes in security headers and configurations over time. |
-| **Historical Attack Traces** | Uncovers past modifications that may indicate previous breaches. |
+| 🚨 **Risk**                        | 🔍 **How Retrospect Helps**                                                                                                                                           |
+|------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Exposed Sensitive Data**         | Identifies **historical data leaks** such as passwords, API keys, or personal information that could still be accessible and pose **current security risks**.       |
+| **Outdated or Unpatched Systems**  | Detects **references to outdated technologies** or old software versions in website snapshots. This helps security professionals find **vulnerabilities** tied to unsupported software that may still be present in current systems. |
+| **Evolving Security Policies**     | Tracks **changes in security headers, CSP settings, cookies, and other configuration settings** over time, allowing you to spot misconfigurations and **potential weaknesses** introduced during the website's evolution. |
+| **Historical Attack Traces**       | **Uncovers past modifications** and configurations that might indicate **previous breaches**, even if the evidence has since been erased. Helps in identifying **attack patterns** or suspicious changes made during a breach. |
 
-Retrospect provides an **unparalleled advantage in cybersecurity**, enabling **proactive threat assessment** by **analyzing past vulnerabilities before they can be exploited today**.  
+
+**Retrospect** provides an **unparalleled advantage in cybersecurity** by enabling **proactive threat assessment**. It allows you to analyze and **learn from past vulnerabilities** before they can be exploited in current environments, strengthening your security posture and ensuring comprehensive protection against evolving threats. Whether you are an ethical hacker, a penetration tester, or a forensic investigator, **Retrospect** offers an invaluable tool for uncovering hidden risks and securing the digital landscape.
+
 
 ## 📚 Use Cases  
 
